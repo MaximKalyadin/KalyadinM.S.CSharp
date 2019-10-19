@@ -8,8 +8,7 @@ using System.Drawing;using System.Drawing.Drawing2D;
 namespace WindowsFormsGasolineTanker
 {
     class Truck
-    {
-        
+    {        
         private float _startPosX;
         private float _startPosY;
         private int _pictureWidth;
@@ -21,17 +20,15 @@ namespace WindowsFormsGasolineTanker
         public Color MainColor { private set; get; }
         public Color DopColor { private set; get; }
         public bool Vat { private set; get; }
-        public bool DopWheel { private set; get; }
         public bool Stairs { private set; get; }
         public bool Strip { private set; get; }
-        public Truck(int maxSpeed, float weight, Color mainColor, Color dopColor, bool vat, bool wheel, bool stairs, bool strip)
+        public Truck(int maxSpeed, float weight, Color mainColor, Color dopColor, bool vat, bool stairs, bool strip)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
             DopColor = dopColor;
             Vat = vat;
-            DopWheel = wheel;
             Stairs = stairs;
             Strip = strip;
         }
@@ -104,15 +101,9 @@ namespace WindowsFormsGasolineTanker
                 g.FillEllipse(wheel, _startPosX + 40, _startPosY - 6, 20, 10);
                 //сама цистерна
                 g.DrawRectangle(pen, _startPosX + 16, _startPosY , 80, 31);
-
                 Brush vat = new SolidBrush(DopColor);
                 g.FillRectangle(vat, _startPosX + 16, _startPosY, 80, 31);
             }
-            if (DopWheel)
-            {
-
-            }
-            
             if (Stairs)
             {
                 //лестница
@@ -126,10 +117,6 @@ namespace WindowsFormsGasolineTanker
                 Brush strip = new SolidBrush(MainColor);
                 g.FillRectangle(strip, _startPosX + 16, _startPosY + 10, 80, 10);
             }
-
-
         }
-
-
     }
 }
