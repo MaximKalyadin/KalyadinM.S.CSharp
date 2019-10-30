@@ -35,7 +35,7 @@ namespace WindowsFormsGasolineTanker
         private void buttonCreateFullTruck_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            truck = new Truck(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
+            truck = new FullTruck(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
 Color.Yellow, true, true, true);
             truck.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTruck.Width,
            pictureBoxTruck.Height);
