@@ -37,6 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureParking)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureTake)).BeginInit();
@@ -53,7 +54,7 @@
             // 
             // buttonParkingTruck
             // 
-            this.buttonParkingTruck.Location = new System.Drawing.Point(899, 12);
+            this.buttonParkingTruck.Location = new System.Drawing.Point(890, 170);
             this.buttonParkingTruck.Name = "buttonParkingTruck";
             this.buttonParkingTruck.Size = new System.Drawing.Size(119, 77);
             this.buttonParkingTruck.TabIndex = 1;
@@ -63,7 +64,7 @@
             // 
             // buttonParkingFullTruck
             // 
-            this.buttonParkingFullTruck.Location = new System.Drawing.Point(1033, 12);
+            this.buttonParkingFullTruck.Location = new System.Drawing.Point(1027, 170);
             this.buttonParkingFullTruck.Name = "buttonParkingFullTruck";
             this.buttonParkingFullTruck.Size = new System.Drawing.Size(119, 77);
             this.buttonParkingFullTruck.TabIndex = 2;
@@ -127,11 +128,22 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Забрать бензовоз";
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(890, 17);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(255, 148);
+            this.listBox1.TabIndex = 4;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 663);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonParkingFullTruck);
             this.Controls.Add(this.buttonParkingTruck);
@@ -157,5 +169,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

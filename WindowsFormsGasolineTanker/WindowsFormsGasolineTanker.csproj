@@ -63,10 +63,14 @@
     <Compile Include="FullTruck.cs" />
     <Compile Include="Gasoline.cs" />
     <Compile Include="ITransport.cs" />
+    <Compile Include="MultiLevelParking.cs" />
     <Compile Include="Parking.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Truck.cs" />
+    <EmbeddedResource Include="FormParking.resx">
+      <DependentUpon>FormParking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTruck.resx">
       <DependentUpon>FormTruck.cs</DependentUpon>
     </EmbeddedResource>
