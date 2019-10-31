@@ -28,7 +28,7 @@ namespace WindowsFormsGasolineTanker
         {
             Random rnd = new Random();
             truck = new Truck(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
-           Color.Orange, true, false, true , true);
+           Color.Orange, true, true , true);
             truck.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTruck.Width,
            pictureBoxTruck.Height);
             Draw();
