@@ -12,7 +12,7 @@ namespace WindowsFormsGasolineTanker
 {
     public partial class FormTruck : Form
     {
-        private Truck truck;
+        private ITransport truck;
         public FormTruck()
         {
             InitializeComponent();
@@ -27,12 +27,21 @@ namespace WindowsFormsGasolineTanker
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            truck = new Truck(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
-           Color.Orange, true, true , true);
+            truck = new BaseClassTruck(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
             truck.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTruck.Width,
            pictureBoxTruck.Height);
             Draw();
         }
+        private void buttonCreateFullTruck_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            truck = new FullTruck(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
+Color.Yellow, true, true, true);
+            truck.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTruck.Width,
+           pictureBoxTruck.Height);
+            Draw();
+        }
+
 
         private void buttonMove_Click(object sender, EventArgs e)
         {
