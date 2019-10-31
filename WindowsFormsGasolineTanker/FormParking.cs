@@ -13,6 +13,7 @@ namespace WindowsFormsGasolineTanker
     public partial class FormParking : Form
     {
         MultiLevelParking parking;
+        FormTruckConfig form;
         private const int countLevel = 5;
         public FormParking()
         {
@@ -35,48 +36,6 @@ namespace WindowsFormsGasolineTanker
                 Graphics gr = Graphics.FromImage(bmp);
                 parking[listBox1.SelectedIndex].Draw(gr);
                 pictureParking.Image = bmp;
-            }
-        }
-        private void buttonSeTruck_Click(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var truck = new BaseClassTruck(100, 1000, dialog.Color);
-                    int place = parking[listBox1.SelectedIndex] + truck;
-                    if (place == -1)
-                    {
-                        MessageBox.Show("Нет свободных мест", "Ошибка",
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    Draw();
-                }
-            }
-        }
-        private void buttonSetFullTruck_Click(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var truck = new FullTruck(100, 1000, dialog.Color,
-                       dialogDop.Color, true, true, true);
-                        int place = parking[listBox1.SelectedIndex] + truck;
-                        if (place == -1)
-                        {
-                            MessageBox.Show("Нет свободных мест", "Ошибка",
-                           MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        Draw();
-                    }
-                }
-
             }
         }
         private void buttonTakeTruck_Click(object sender, EventArgs e)
@@ -107,7 +66,27 @@ namespace WindowsFormsGasolineTanker
         private void listBoxLevels_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
-
+        }
+        private void buttonSetCar_Click(object sender, EventArgs e)
+        {
+            form = new FormTruckConfig();
+            form.AddEvent(AddTruck);
+            form.Show();
+        }
+        private void AddTruck(ITransport car)
+        {
+            if (car != null && listBox1.SelectedIndex > -1)
+            {
+                int place = parking[listBox1.SelectedIndex] + car;
+                if (place > -1)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Машину не удалось поставить");
+                }
+            }
         }
     }
 }
