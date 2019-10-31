@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace WindowsFormsGasolineTanker
 {
-    interface ITransport
+    public interface ITransport
     {
         void SetPosition(int x, int y, int width, int height);
         void MoveTransport(Direction direction);
