@@ -73,11 +73,11 @@ namespace WindowsFormsGasolineTanker
             form.AddEvent(AddTruck);
             form.Show();
         }
-        private void AddTruck(ITransport car)
+        private void AddTruck(ITransport truck)
         {
-            if (car != null && listBox1.SelectedIndex > -1)
+            if (truck != null && listBox1.SelectedIndex > -1)
             {
-                int place = parking[listBox1.SelectedIndex] + car;
+                int place = parking[listBox1.SelectedIndex] + truck;
                 if (place > -1)
                 {
                     Draw();
