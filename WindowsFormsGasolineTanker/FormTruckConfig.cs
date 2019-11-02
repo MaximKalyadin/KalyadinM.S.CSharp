@@ -72,7 +72,7 @@ namespace WindowsFormsGasolineTanker
                     truck = new BaseClassTruck(100, 500, Color.White);
                     break;
                 case "Full":
-                    truck = new FullTruck(100, 500, Color.White, Color.Black, true, true,
+                    truck = new FullTruck(100, 500, Color.White, Color.White, true, true,
                    true);
                     break;
             }

@@ -111,6 +111,7 @@
             // 
             // labelDopColor
             // 
+            this.labelDopColor.AllowDrop = true;
             this.labelDopColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelDopColor.Location = new System.Drawing.Point(53, 237);
             this.labelDopColor.Name = "labelDopColor";
@@ -119,6 +120,7 @@
             this.labelDopColor.Text = "Дополнительный цвет ";
             this.labelDopColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelDopColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragDrop);
+            this.labelDopColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
             // 
             // labelMainColor
             // 
