@@ -63,6 +63,7 @@
     <Compile Include="FullTruck.cs" />
     <Compile Include="Gasoline.cs" />
     <Compile Include="ITransport.cs" />
+    <Compile Include="MultiLevelParking.cs" />
     <Compile Include="Parking.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
