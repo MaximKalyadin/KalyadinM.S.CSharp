@@ -22,30 +22,30 @@ namespace WindowsFormsGasolineTanker
             //заполнение listBox
             for (int i = 0; i < countLevel; i++)
             {
-                listBox1.Items.Add("Уровень " + (i + 1));
+                listBoxLevels.Items.Add("Уровень " + (i + 1));
             }
-            listBox1.SelectedIndex = 0;
+            listBoxLevels.SelectedIndex = 0;
 
         }
         private void Draw()
         {
-            if (listBox1.SelectedIndex > -1)
+            if (listBoxLevels.SelectedIndex > -1)
             {
                 Bitmap bmp = new Bitmap(pictureParking.Width, pictureParking.Height);
                 Graphics gr = Graphics.FromImage(bmp);
-                parking[listBox1.SelectedIndex].Draw(gr);
+                parking[listBoxLevels.SelectedIndex].Draw(gr);
                 pictureParking.Image = bmp;
             }
         }
         private void buttonSeTruck_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex > -1)
+            if (listBoxLevels.SelectedIndex > -1)
             {
                 ColorDialog dialog = new ColorDialog();
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     var truck = new BaseClassTruck(100, 1000, dialog.Color);
-                    int place = parking[listBox1.SelectedIndex] + truck;
+                    int place = parking[listBoxLevels.SelectedIndex] + truck;
                     if (place == -1)
                     {
                         MessageBox.Show("Нет свободных мест", "Ошибка",
@@ -57,7 +57,7 @@ namespace WindowsFormsGasolineTanker
         }
         private void buttonSetFullTruck_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex > -1)
+            if (listBoxLevels.SelectedIndex > -1)
             {
                 ColorDialog dialog = new ColorDialog();
                 if (dialog.ShowDialog() == DialogResult.OK)
@@ -67,7 +67,7 @@ namespace WindowsFormsGasolineTanker
                     {
                         var truck = new FullTruck(100, 1000, dialog.Color,
                        dialogDop.Color, true, true, true);
-                        int place = parking[listBox1.SelectedIndex] + truck;
+                        int place = parking[listBoxLevels.SelectedIndex] + truck;
                         if (place == -1)
                         {
                             MessageBox.Show("Нет свободных мест", "Ошибка",
@@ -81,12 +81,12 @@ namespace WindowsFormsGasolineTanker
         }
         private void buttonTakeTruck_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex > -1)
+            if (listBoxLevels.SelectedIndex > -1)
             {
-                if (maskedTextBox.Text != "")
+                if (maskedTextBoxTake.Text != "")
                 {
-                    var truck = parking[listBox1.SelectedIndex] -
-                   Convert.ToInt32(maskedTextBox.Text);
+                    var truck = parking[listBoxLevels.SelectedIndex] -
+                   Convert.ToInt32(maskedTextBoxTake.Text);
                     if (truck != null)
                     {
                         Bitmap bmp = new Bitmap(pictureTake.Width, pictureTake.Height);
