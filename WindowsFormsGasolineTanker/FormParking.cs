@@ -52,9 +52,9 @@ namespace WindowsFormsGasolineTanker
         }
         private void buttonTakeTruck_Click(object sender, EventArgs e)
         {
-            if (maskedTextBox.Text != "")
+            if (maskedTextBoxTake.Text != "")
             {
-                var truck = parking - Convert.ToInt32(maskedTextBox.Text);
+                var truck = parking - Convert.ToInt32(maskedTextBoxTake.Text);
                 if (truck != null)
                 {
                     Bitmap bmp = new Bitmap(pictureTake.Width,
