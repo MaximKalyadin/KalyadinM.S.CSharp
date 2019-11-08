@@ -23,6 +23,10 @@ namespace WindowsFormsGasolineTanker
             _pictureWidth = width;
             _pictureHeight = height;
         }
+        public void SetMainColor(Color color)
+        {
+            MainColor = color;
+        }
         public abstract void DrawTruck(Graphics g);
         public abstract void MoveTransport(Direction direction);
 

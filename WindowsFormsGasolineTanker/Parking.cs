@@ -76,7 +76,7 @@ namespace WindowsFormsGasolineTanker
                 for (int j = 0; j < 6; ++j)
                 {//линия рамзетки места
                     g.DrawLine(pen, i * _placeSizeWidth, j * _placeSizeHeight,
-                    i * _placeSizeWidth + 110, j * _placeSizeHeight);
+                    i * _placeSizeWidth + 150, j * _placeSizeHeight);
                 }
                 g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth, 400);
             }

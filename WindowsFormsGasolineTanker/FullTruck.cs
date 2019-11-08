@@ -100,5 +100,9 @@ namespace WindowsFormsGasolineTanker
             }
             base.DrawTruck(g);
         }
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
+        }
     }
 }
