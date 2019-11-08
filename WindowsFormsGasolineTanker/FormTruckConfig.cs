@@ -27,7 +27,7 @@ namespace WindowsFormsGasolineTanker
             {
                 Bitmap bmp = new Bitmap(pictureBoxSetTruck.Width, pictureBoxSetTruck.Height);
                 Graphics gr = Graphics.FromImage(bmp);
-                truck.SetPosition(5, 5, pictureBoxSetTruck.Width, pictureBoxSetTruck.Height);
+                truck.SetPosition(10, 25, pictureBoxSetTruck.Width, pictureBoxSetTruck.Height);
                 truck.DrawTruck(gr);
                 pictureBoxSetTruck.Image = bmp;
             }

@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.pictureParking = new System.Windows.Forms.PictureBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxTake = new System.Windows.Forms.GroupBox();
             this.buttonTakeTruck = new System.Windows.Forms.Button();
             this.pictureTake = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.labelPlace = new System.Windows.Forms.Label();
+            this.maskedTextBoxTake = new System.Windows.Forms.MaskedTextBox();
+            this.labelTakeTruck = new System.Windows.Forms.Label();
+            this.listBoxLevels = new System.Windows.Forms.ListBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureParking)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxTake.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureTake)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,18 +51,18 @@
             this.pictureParking.TabIndex = 0;
             this.pictureParking.TabStop = false;
             // 
-            // groupBox1
+            // groupBoxTake
             // 
-            this.groupBox1.Controls.Add(this.buttonTakeTruck);
-            this.groupBox1.Controls.Add(this.pictureTake);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.maskedTextBox);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(917, 431);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(235, 220);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
+            this.groupBoxTake.Controls.Add(this.buttonTakeTruck);
+            this.groupBoxTake.Controls.Add(this.pictureTake);
+            this.groupBoxTake.Controls.Add(this.labelPlace);
+            this.groupBoxTake.Controls.Add(this.maskedTextBoxTake);
+            this.groupBoxTake.Controls.Add(this.labelTakeTruck);
+            this.groupBoxTake.Location = new System.Drawing.Point(917, 431);
+            this.groupBoxTake.Name = "groupBoxTake";
+            this.groupBoxTake.Size = new System.Drawing.Size(235, 220);
+            this.groupBoxTake.TabIndex = 3;
+            this.groupBoxTake.TabStop = false;
             // 
             // buttonTakeTruck
             // 
@@ -82,40 +82,40 @@
             this.pictureTake.TabIndex = 3;
             this.pictureTake.TabStop = false;
             // 
-            // label2
+            // labelPlace
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Место";
+            this.labelPlace.AutoSize = true;
+            this.labelPlace.Location = new System.Drawing.Point(61, 48);
+            this.labelPlace.Name = "labelPlace";
+            this.labelPlace.Size = new System.Drawing.Size(49, 17);
+            this.labelPlace.TabIndex = 2;
+            this.labelPlace.Text = "Место";
             // 
-            // maskedTextBox
+            // maskedTextBoxTake
             // 
-            this.maskedTextBox.Location = new System.Drawing.Point(130, 48);
-            this.maskedTextBox.Name = "maskedTextBox";
-            this.maskedTextBox.Size = new System.Drawing.Size(59, 22);
-            this.maskedTextBox.TabIndex = 1;
+            this.maskedTextBoxTake.Location = new System.Drawing.Point(130, 48);
+            this.maskedTextBoxTake.Name = "maskedTextBoxTake";
+            this.maskedTextBoxTake.Size = new System.Drawing.Size(59, 22);
+            this.maskedTextBoxTake.TabIndex = 1;
             // 
-            // label1
+            // labelTakeTruck
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Забрать бензовоз";
+            this.labelTakeTruck.AutoSize = true;
+            this.labelTakeTruck.Location = new System.Drawing.Point(61, 18);
+            this.labelTakeTruck.Name = "labelTakeTruck";
+            this.labelTakeTruck.Size = new System.Drawing.Size(128, 17);
+            this.labelTakeTruck.TabIndex = 0;
+            this.labelTakeTruck.Text = "Забрать бензовоз";
             // 
-            // listBox1
+            // listBoxLevels
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(890, 17);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(255, 148);
-            this.listBox1.TabIndex = 4;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged);
+            this.listBoxLevels.FormattingEnabled = true;
+            this.listBoxLevels.ItemHeight = 16;
+            this.listBoxLevels.Location = new System.Drawing.Point(890, 17);
+            this.listBoxLevels.Name = "listBoxLevels";
+            this.listBoxLevels.Size = new System.Drawing.Size(255, 148);
+            this.listBoxLevels.TabIndex = 4;
+            this.listBoxLevels.SelectedIndexChanged += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged);
             // 
             // buttonAdd
             // 
@@ -133,14 +133,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 663);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.listBoxLevels);
+            this.Controls.Add(this.groupBoxTake);
             this.Controls.Add(this.pictureParking);
             this.Name = "FormParking";
             this.Text = "Парковка";
             ((System.ComponentModel.ISupportInitialize)(this.pictureParking)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxTake.ResumeLayout(false);
+            this.groupBoxTake.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureTake)).EndInit();
             this.ResumeLayout(false);
 
@@ -149,13 +149,13 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureParking;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxTake;
         private System.Windows.Forms.Button buttonTakeTruck;
         private System.Windows.Forms.PictureBox pictureTake;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label labelPlace;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxTake;
+        private System.Windows.Forms.Label labelTakeTruck;
+        private System.Windows.Forms.ListBox listBoxLevels;
         private System.Windows.Forms.Button buttonAdd;
     }
 }
