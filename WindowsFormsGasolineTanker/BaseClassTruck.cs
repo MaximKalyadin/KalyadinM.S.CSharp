@@ -17,6 +17,16 @@ namespace WindowsFormsGasolineTanker
             Weight = weight;
             MainColor = mainColor;
         }
+        public BaseClassTruck(string info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+            }
+        }
         public override void MoveTransport(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
@@ -74,7 +84,10 @@ namespace WindowsFormsGasolineTanker
             //платформа
             g.DrawRectangle(pen, _startPosX + 15, _startPosY + 34, 85, 10);
             g.FillRectangle(wheel, _startPosX + 15, _startPosY + 34, 85, 10);
-
+        }
+        public override string ToString()
+        {
+            return MaxSpeed + ";" + Weight + ";" + MainColor.Name;
         }
     }
 }

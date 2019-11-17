@@ -33,6 +33,18 @@ namespace WindowsFormsGasolineTanker
             Random rnd = new Random();
             DopWheel = rnd.Next(2, 5);
         }
+        public FullTruck(string info) : base(info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 8)
+            {
+                DopColor = Color.FromName(strs[0]);
+                Vat = Convert.ToBoolean(strs[1]);
+                Stairs = Convert.ToBoolean(strs[2]);
+                Strip = Convert.ToBoolean(strs[3]);
+                DopWheel = Convert.ToInt32(strs[4]);
+            }
+        }
         public override void DrawTruck(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
@@ -104,5 +116,11 @@ namespace WindowsFormsGasolineTanker
         {
             DopColor = color;
         }
+        public override string ToString()
+        {
+            return base.ToString() + ";" + DopColor.Name + ";" + Vat + ";" +
+           Stairs + ";" + Strip ;
+        }
+
     }
 }
