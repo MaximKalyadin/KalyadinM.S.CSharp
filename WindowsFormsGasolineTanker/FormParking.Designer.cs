@@ -35,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxLevel = new System.Windows.Forms.ListBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureParking)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -107,15 +107,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Забрать бензовоз";
             // 
-            // listBox1
+            // listBoxLevel
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(890, 17);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(255, 148);
-            this.listBox1.TabIndex = 4;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged);
+            this.listBoxLevel.FormattingEnabled = true;
+            this.listBoxLevel.ItemHeight = 16;
+            this.listBoxLevel.Location = new System.Drawing.Point(890, 17);
+            this.listBoxLevel.Name = "listBoxLevel";
+            this.listBoxLevel.Size = new System.Drawing.Size(255, 148);
+            this.listBoxLevel.TabIndex = 4;
+            this.listBoxLevel.SelectedIndexChanged += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged);
             // 
             // buttonAdd
             // 
@@ -133,7 +133,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 663);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxLevel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureParking);
             this.Name = "FormParking";
@@ -155,7 +155,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxLevel;
         private System.Windows.Forms.Button buttonAdd;
     }
 }
