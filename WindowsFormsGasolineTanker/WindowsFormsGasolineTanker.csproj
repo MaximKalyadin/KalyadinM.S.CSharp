@@ -60,6 +60,12 @@
     <Compile Include="FormTruck.Designer.cs">
       <DependentUpon>FormTruck.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTruckConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTruckConfig.Designer.cs">
+      <DependentUpon>FormTruckConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="FullTruck.cs" />
     <Compile Include="Gasoline.cs" />
     <Compile Include="ITransport.cs" />
