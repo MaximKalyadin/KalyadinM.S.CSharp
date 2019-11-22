@@ -23,30 +23,18 @@ namespace WindowsFormsGasolineTanker
                 parkingStages.Add(new Parking<ITransport>(countPlaces, pictureWidth, pictureHeight));
             }
         }
-        public Parking<ITransport> this[int ind]
-        {
-            get
-            {
-                if (ind > -1 && ind < parkingStages.Count)
-                {
-                    return parkingStages[ind];
-                }
-                return null;
-            }
-        }
         public bool SaveData(string filename)
         {
             if (File.Exists(filename))
             {
                 File.Delete(filename);
             }
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            using (StreamWriter fs = new StreamWriter(File.OpenWrite(filename)))
             {
-                WriteToFile("CountLeveles:" + parkingStages.Count +
-               Environment.NewLine, fs);
+                fs.WriteLine($"CountLevels:{parkingStages.Count}");
                 foreach (var level in parkingStages)
                 {
-                    WriteToFile("Level" + Environment.NewLine, fs);
+                    fs.WriteLine("Level");
                     for (int i = 0; i < countPlaces; i++)
                     {
                         var truck = level[i];
@@ -54,13 +42,12 @@ namespace WindowsFormsGasolineTanker
                         {
                             if (truck.GetType().Name == "BaseClassTruck")
                             {
-                                WriteToFile(i + ":BaseClassTruck:", fs);
+                                fs.WriteLine($"{i}:BaseClassTruck:" + truck);
                             }
                             if (truck.GetType().Name == "FullTruck")
                             {
-                                WriteToFile(i + ":FullTruck:", fs);
+                                fs.WriteLine($"{i}:FullTruck:" + truck);
                             }
-                            WriteToFile(truck + Environment.NewLine, fs);
                         }
                     }
                 }
@@ -78,57 +65,54 @@ namespace WindowsFormsGasolineTanker
             {
                 return false;
             }
-            string bufferTextFromFile = "";
-            using (FileStream fs = new FileStream(filename, FileMode.Open))
+            string buff = "";
+            using (StreamReader fs = new StreamReader(File.OpenRead(filename)))
             {
-                byte[] b = new byte[fs.Length];
-                UTF8Encoding temp = new UTF8Encoding(true);
-                while (fs.Read(b, 0, b.Length) > 0)
+                buff = fs.ReadLine();
+                if (buff.Split(':')[0] == "CountLevels")
                 {
-                    bufferTextFromFile += temp.GetString(b);
+                    int countLevel = Convert.ToInt32(buff.Split(':')[1]);
+                    if (parkingStages != null)
+                        parkingStages.Clear();
+                    parkingStages = new List<Parking<ITransport>>(countLevel);
                 }
-            }
-            bufferTextFromFile = bufferTextFromFile.Replace("\r", "");
-            var strs = bufferTextFromFile.Split('\n');
-            if (strs[0].Contains("CountLeveles"))
-            {
-                int count = Convert.ToInt32(strs[0].Split(':')[1]);
-                if (parkingStages != null)
+                else
+                    return false;
+                int count = -1;
+                while (!fs.EndOfStream)
                 {
-                    parkingStages.Clear();
+                    buff = fs.ReadLine();
+                    ITransport truck = null;
+                    if (buff == "Level")
+                    {
+                        count++;
+                        parkingStages.Add(new Parking<ITransport>(countPlaces, pictureWidth, pictureHeight));
+                        continue;
+                    }
+                    if (buff.Split(':')[1] == "BaseClassTruck")
+                    {
+                        truck = new BaseClassTruck(buff.Split(':')[2]);
+                        parkingStages[count][Convert.ToInt32(buff.Split(':')[0])] = truck;
+                    }
+                    if (buff.Split(':')[1] == "FullTruck")
+                    {
+                        truck = new FullTruck(buff.Split(':')[2]);
+                        parkingStages[count][Convert.ToInt32(buff.Split(':')[0])] = truck;
+                    }
                 }
-                parkingStages = new List<Parking<ITransport>>(count);
-            }
-            else
-            {
-                return false;
-            }
-            int counter = -1;
-            ITransport truck = null;
-            for (int i = 1; i < strs.Length; ++i)
-            {
-                if (strs[i] == "Level")
-                {
-                    counter++;
-                parkingStages.Add(new Parking<ITransport>(countPlaces,
-pictureWidth, pictureHeight));
-                    continue;
-                }
-                if (string.IsNullOrEmpty(strs[i]))
-                {
-                    continue;
-                }
-                if (strs[i].Split(':')[1] == "BaseClassTruck")
-                {
-                    truck = new BaseClassTruck(strs[i].Split(':')[2]);
-                }
-                else if (strs[i].Split(':')[1] == "FullTruck")
-                {
-                    truck = new FullTruck(strs[i].Split(':')[2]);
-                }
-                parkingStages[counter][Convert.ToInt32(strs[i].Split(':')[0])] = truck;
             }
             return true;
+        }
+        public Parking<ITransport> this[int ind]
+        {
+            get
+            {
+                if (ind > -1 && ind < parkingStages.Count)
+                {
+                    return parkingStages[ind];
+                }
+                return null;
+            }
         }
     }
 }
