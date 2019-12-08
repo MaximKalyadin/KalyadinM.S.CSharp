@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using System.Drawing;
 
 
 namespace WindowsFormsGasolineTanker
@@ -89,7 +88,8 @@ namespace WindowsFormsGasolineTanker
                 {
                     return _places[ind];
                 }
-                throw new ParkingNotFoundException(ind);
+                //throw new ParkingNotFoundException(ind);
+                return null;
             }
             set
             {

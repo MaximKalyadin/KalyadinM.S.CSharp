@@ -65,6 +65,7 @@ namespace WindowsFormsGasolineTanker
                     }
                     catch (ParkingNotFoundException ex)
                     {
+                        logger.Warn(ex.Message);
                         MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK,
                        MessageBoxIcon.Error);
                         Bitmap bmp = new Bitmap(pictureTake.Width,
@@ -73,6 +74,7 @@ namespace WindowsFormsGasolineTanker
                     }
                     catch (Exception ex)
                     {
+                        logger.Warn(ex.Message);
                         MessageBox.Show(ex.Message, "Неизвестная ошибка",
                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -102,11 +104,13 @@ namespace WindowsFormsGasolineTanker
                 }
                 catch (ParkingOverflowException ex)
                 {
+                    logger.Warn(ex.Message);
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
+                    logger.Warn(ex.Message);
                     MessageBox.Show(ex.Message, "Неизвестная ошибка",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -127,6 +131,7 @@ namespace WindowsFormsGasolineTanker
                 }
                 catch (Exception ex)
                 {
+                    logger.Warn(ex.Message);
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -146,11 +151,13 @@ namespace WindowsFormsGasolineTanker
                 }
                 catch (ParkingOccupiedPlaceException ex)
                 {
+                    logger.Warn(ex.Message);
                     MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
+                    logger.Warn(ex.Message);
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

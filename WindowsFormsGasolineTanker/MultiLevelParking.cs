@@ -10,7 +10,7 @@ namespace WindowsFormsGasolineTanker
     public class MultiLevelParking
     {
         List<Parking<ITransport>> parkingStages;
-        private const int countPlaces = 20;
+        private const int countPlaces = 5;
         private int pictureWidth;
         private int pictureHeight;
         public MultiLevelParking(int countStages, int pictureWidth, int pictureHeight)
