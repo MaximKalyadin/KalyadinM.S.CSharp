@@ -137,5 +137,9 @@ namespace WindowsFormsGasolineTanker
                 parkingStages[counter][Convert.ToInt32(strs[i].Split(':')[0])] = truck;
             }
         }
+        public void Sort()
+        {
+            parkingStages.Sort();
+        }
     }
 }

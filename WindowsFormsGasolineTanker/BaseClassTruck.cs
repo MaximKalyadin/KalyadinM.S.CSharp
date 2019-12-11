@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace WindowsFormsGasolineTanker
 {
-    public class BaseClassTruck : Gasoline
+    public class BaseClassTruck : Gasoline, IComparable<BaseClassTruck>, IEquatable<BaseClassTruck>
     {
         protected const int carWidth = 100;
         protected const int carHeight = 60;
@@ -89,5 +89,69 @@ namespace WindowsFormsGasolineTanker
         {
             return MaxSpeed + ";" + Weight + ";" + MainColor.Name;
         }
+        public int CompareTo(BaseClassTruck other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return MaxSpeed.CompareTo(other.MaxSpeed);
+            }
+            if (Weight != other.Weight)
+            {
+                return Weight.CompareTo(other.Weight);
+            }
+            if (MainColor != other.MainColor)
+            {
+                MainColor.Name.CompareTo(other.MainColor.Name);
+            }
+            return 0;
+        }
+        public bool Equals(BaseClassTruck other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is BaseClassTruck carObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(carObj);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
     }
 }

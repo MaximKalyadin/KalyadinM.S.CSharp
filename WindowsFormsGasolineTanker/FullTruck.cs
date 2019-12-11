@@ -8,7 +8,7 @@ using System.Drawing.Drawing2D;
 
 namespace WindowsFormsGasolineTanker
 {
-    class FullTruck : BaseClassTruck
+    class FullTruck : BaseClassTruck, IComparable<FullTruck>, IEquatable<FullTruck>
     {
         public Color DopColor { private set; get; }
         public bool Vat { private set; get; }
@@ -121,6 +121,78 @@ namespace WindowsFormsGasolineTanker
             return base.ToString() + ";" + DopColor.Name + ";" + Vat + ";" +
            Stairs + ";" + Strip;
         }
-
+        public int CompareTo(FullTruck other)
+        {
+            var res = (this is BaseClassTruck).CompareTo(other is BaseClassTruck);
+            if (res != 0)
+            {
+                return res;
+            }
+            if (DopColor != other.DopColor)
+            {
+                DopColor.Name.CompareTo(other.DopColor.Name);
+            }
+            if (Vat != other.Vat)
+            {
+                return Vat.CompareTo(other.Vat);
+            }
+            if (Stairs != other.Stairs)
+            {
+                return Stairs.CompareTo(other.Stairs);
+            }
+            if (Strip != other.Strip)
+            {
+                return Strip.CompareTo(other.Strip);
+            }
+            return 0;
+        }
+        public bool Equals(FullTruck other)
+        {
+            var res = (this as BaseClassTruck).Equals(other as BaseClassTruck);
+            if (!res)
+            {
+                return res;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (Vat != other.Vat)
+            {
+                return false;
+            }
+            if (Stairs != other.Stairs)
+            {
+                return false;
+            }
+            if (Strip != other.Strip)
+            {
+                return false;
+            }
+            return true;
+        }
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is FullTruck carObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(carObj);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
