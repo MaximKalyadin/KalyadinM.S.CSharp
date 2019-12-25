@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using System.Drawing;
 
 
 namespace WindowsFormsGasolineTanker
@@ -28,7 +27,7 @@ namespace WindowsFormsGasolineTanker
         {
             if (p._places.Count == p._maxCount)
             {
-                return -1;
+                throw new ParkingOverflowException();
             }
             for (int i = 0; i < p._maxCount; i++)
             {
@@ -51,7 +50,7 @@ namespace WindowsFormsGasolineTanker
                 p._places.Remove(index);
                 return car;
             }
-            return null;
+            throw new ParkingNotFoundException(index);
         }
         private bool CheckFreePlace(int index)
         {
@@ -89,6 +88,7 @@ namespace WindowsFormsGasolineTanker
                 {
                     return _places[ind];
                 }
+                //throw new ParkingNotFoundException(ind);
                 return null;
             }
             set
@@ -98,6 +98,10 @@ namespace WindowsFormsGasolineTanker
                     _places.Add(ind, value);
                     _places[ind].SetPosition(5 + ind / 5 * _placeSizeWidth + 5, ind % 5
                     * _placeSizeHeight + 15, PictureWidth, PictureHeight);
+                }
+                else
+                {
+                    throw new ParkingOccupiedPlaceException(ind);
                 }
             }
         }

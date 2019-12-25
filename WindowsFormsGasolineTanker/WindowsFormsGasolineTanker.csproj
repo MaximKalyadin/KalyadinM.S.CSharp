@@ -71,6 +71,9 @@
     <Compile Include="ITransport.cs" />
     <Compile Include="MultiLevelParking.cs" />
     <Compile Include="Parking.cs" />
+    <Compile Include="ParkingNotFoundException.cs" />
+    <Compile Include="ParkingOccupiedPlaceException.cs" />
+    <Compile Include="ParkingOverflowException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Truck.cs" />

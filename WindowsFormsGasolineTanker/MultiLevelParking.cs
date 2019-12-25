@@ -10,7 +10,7 @@ namespace WindowsFormsGasolineTanker
     public class MultiLevelParking
     {
         List<Parking<ITransport>> parkingStages;
-        private const int countPlaces = 20;
+        private const int countPlaces = 5;
         private int pictureWidth;
         private int pictureHeight;
         public MultiLevelParking(int countStages, int pictureWidth, int pictureHeight)
@@ -23,7 +23,18 @@ namespace WindowsFormsGasolineTanker
                 parkingStages.Add(new Parking<ITransport>(countPlaces, pictureWidth, pictureHeight));
             }
         }
-        public bool SaveData(string filename)
+        public Parking<ITransport> this[int ind]
+        {
+            get
+            {
+                if (ind > -1 && ind < parkingStages.Count)
+                {
+                    return parkingStages[ind];
+                }
+                return null;
+            }
+        }
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -37,28 +48,31 @@ namespace WindowsFormsGasolineTanker
                     fs.WriteLine("Level");
                     for (int i = 0; i < countPlaces; i++)
                     {
-                        var truck = level[i];
-                        if (truck != null)
+                        try
                         {
-                            if (truck.GetType().Name == "BaseClassTruck")
+                            var truck = level[i];
+                            if (truck != null)
                             {
-                                fs.WriteLine($"{i}:BaseClassTruck:" + truck);
-                            }
-                            if (truck.GetType().Name == "FullTruck")
-                            {
-                                fs.WriteLine($"{i}:FullTruck:" + truck);
+                                if (truck.GetType().Name == "BaseClassTruck")
+                                {
+                                    fs.WriteLine($"{i}:BaseClassTruck:" + truck);
+                                }
+                                if (truck.GetType().Name == "FullTruck")
+                                {
+                                    fs.WriteLine($"{i}:FullTruck:" + truck);
+                                }
                             }
                         }
+                        finally { }
                     }
                 }
             }
-            return true;
         }
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
             string buff = "";
             using (StreamReader fs = new StreamReader(File.OpenRead(filename)))
@@ -72,7 +86,7 @@ namespace WindowsFormsGasolineTanker
                     parkingStages = new List<Parking<ITransport>>(countLevel);
                 }
                 else
-                    return false;
+                    throw new Exception("Неверный формат файла");
                 int count = -1;
                 while (!fs.EndOfStream)
                 {
@@ -95,18 +109,6 @@ namespace WindowsFormsGasolineTanker
                         parkingStages[count][Convert.ToInt32(buff.Split(':')[0])] = truck;
                     }
                 }
-            }
-            return true;
-        }
-        public Parking<ITransport> this[int ind]
-        {
-            get
-            {
-                if (ind > -1 && ind < parkingStages.Count)
-                {
-                    return parkingStages[ind];
-                }
-                return null;
             }
         }
     }
