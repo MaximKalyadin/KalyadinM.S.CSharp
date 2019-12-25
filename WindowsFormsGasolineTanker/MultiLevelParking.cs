@@ -111,5 +111,9 @@ namespace WindowsFormsGasolineTanker
                 }
             }
         }
+        public void Sort()
+        {
+            parkingStages.Sort();
+        }
     }
 }
