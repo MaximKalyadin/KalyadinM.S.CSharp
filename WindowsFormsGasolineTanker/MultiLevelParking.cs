@@ -40,41 +40,33 @@ namespace WindowsFormsGasolineTanker
             {
                 File.Delete(filename);
             }
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            using (StreamWriter fs = new StreamWriter(File.OpenWrite(filename)))
             {
-                //Записываем количество уровней
-                WriteToFile("CountLeveles:" + parkingStages.Count +
-               Environment.NewLine, fs);
+                fs.WriteLine($"CountLevels:{parkingStages.Count}");
                 foreach (var level in parkingStages)
                 {
-                    //Начинаем уровень
-                    WriteToFile("Level" + Environment.NewLine, fs);
+                    fs.WriteLine("Level");
                     for (int i = 0; i < countPlaces; i++)
                     {
                         try
                         {
                             var truck = level[i];
-                            //Записываем тип мшаины
-                            if (truck.GetType().Name == "BaseClassTruck")
+                            if (truck != null)
                             {
-                                WriteToFile(i + ":BaseClassTruck:", fs);
+                                if (truck.GetType().Name == "BaseClassTruck")
+                                {
+                                    fs.WriteLine($"{i}:BaseClassTruck:" + truck);
+                                }
+                                if (truck.GetType().Name == "FullTruck")
+                                {
+                                    fs.WriteLine($"{i}:FullTruck:" + truck);
+                                }
                             }
-                            if (truck.GetType().Name == "FullTruck")
-                            {
-                                WriteToFile(i + ":FullTruck:", fs);
-                            }
-                            //Записываемые параметры
-                            WriteToFile(truck + Environment.NewLine, fs);
                         }
                         finally { }
                     }
                 }
             }
-        }
-        private void WriteToFile(string text, FileStream stream)
-        {
-            byte[] info = new UTF8Encoding(true).GetBytes(text);
-            stream.Write(info, 0, info.Length);
         }
         public void LoadData(string filename)
         {
@@ -82,59 +74,41 @@ namespace WindowsFormsGasolineTanker
             {
                 throw new FileNotFoundException();
             }
-            string bufferTextFromFile = "";
-            using (FileStream fs = new FileStream(filename, FileMode.Open))
+            string buff = "";
+            using (StreamReader fs = new StreamReader(File.OpenRead(filename)))
             {
-                byte[] b = new byte[fs.Length];
-                UTF8Encoding temp = new UTF8Encoding(true);
-                while (fs.Read(b, 0, b.Length) > 0)
+                buff = fs.ReadLine();
+                if (buff.Split(':')[0] == "CountLevels")
                 {
-                    bufferTextFromFile += temp.GetString(b);
+                    int countLevel = Convert.ToInt32(buff.Split(':')[1]);
+                    if (parkingStages != null)
+                        parkingStages.Clear();
+                    parkingStages = new List<Parking<ITransport>>(countLevel);
                 }
-            }
-            bufferTextFromFile = bufferTextFromFile.Replace("\r", "");
-            var strs = bufferTextFromFile.Split('\n');
-            if (strs[0].Contains("CountLeveles"))
-            {
-                //считываем количество уровней
-                int count = Convert.ToInt32(strs[0].Split(':')[1]);
-                if (parkingStages != null)
+                else
+                    throw new Exception("Неверный формат файла");
+                int count = -1;
+                while (!fs.EndOfStream)
                 {
-                    parkingStages.Clear();
+                    buff = fs.ReadLine();
+                    ITransport truck = null;
+                    if (buff == "Level")
+                    {
+                        count++;
+                        parkingStages.Add(new Parking<ITransport>(countPlaces, pictureWidth, pictureHeight));
+                        continue;
+                    }
+                    if (buff.Split(':')[1] == "BaseClassTruck")
+                    {
+                        truck = new BaseClassTruck(buff.Split(':')[2]);
+                        parkingStages[count][Convert.ToInt32(buff.Split(':')[0])] = truck;
+                    }
+                    if (buff.Split(':')[1] == "FullTruck")
+                    {
+                        truck = new FullTruck(buff.Split(':')[2]);
+                        parkingStages[count][Convert.ToInt32(buff.Split(':')[0])] = truck;
+                    }
                 }
-                parkingStages = new List<Parking<ITransport>>(count);
-            }
-            else
-            {
-                //если нет такой записи, то это не те данные
-                throw new Exception("Неверный формат файла");
-            }
-            int counter = -1;
-            ITransport truck = null;
-            for (int i = 1; i < strs.Length; ++i)
-            {
-                //идем по считанным записям
-                if (strs[i] == "Level")
-                {
-                    //начинаем новый уровень
-                    counter++;
-                    parkingStages.Add(new Parking<ITransport>(countPlaces,
-                    pictureWidth, pictureHeight));
-                    continue;
-                }
-                if (string.IsNullOrEmpty(strs[i]))
-                {
-                    continue;
-                }
-                if (strs[i].Split(':')[1] == "BaseClassTruck")
-                {
-                    truck = new BaseClassTruck(strs[i].Split(':')[2]);
-                }
-                else if (strs[i].Split(':')[1] == "FullTruck")
-                {
-                    truck = new FullTruck(strs[i].Split(':')[2]);
-                }
-                parkingStages[counter][Convert.ToInt32(strs[i].Split(':')[0])] = truck;
             }
         }
     }
