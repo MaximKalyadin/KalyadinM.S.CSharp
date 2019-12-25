@@ -59,7 +59,7 @@ namespace WindowsFormsGasolineTanker
                                 }
                                 if (truck.GetType().Name == "FullTruck")
                                 {
-                                    fs.WriteLine($"{i}:FullTruck:" + truck);
+                                    fs.WriteLine($"{i}:FullTruck:"  + truck);
                                 }
                             }
                         }
